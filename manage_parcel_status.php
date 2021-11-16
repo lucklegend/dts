@@ -1,16 +1,18 @@
 <?php session_start() ?>
 <div class="container-fluid">
 	<form action="" id="update_status">
-		<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
-		<input type="hidden" name="created_by" value="<?php echo $_SESSION['login_type'] ?>">
+		<input type="show" name="id" value="<?php echo $_GET['id'] ?>">
+		<input type="show" name="created_by" value="<?php echo $_SESSION['login_type'] ?>">
+		<input type="show" name="modified_by" value="<?php echo $_SESSION['login_name'] ?>"> 
 		<div class="form-group">
 			<label for="">Update Status</label>
-			<?php $status_arr = array("Tracking Number Generated","Collected","Shipped","In-Transit","Arrived At Destination","Out for Delivery","Ready to Pickup","Delivered","Picked-up","Unsuccessfull Delivery Attempt"); ?>
+			<?php $status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up"); ?>
 			<select name="status" id="" class="custom-select custom-select-sm">
 				<?php foreach($status_arr as $k => $v): ?>
 					<option value="<?php echo $k ?>" <?php echo $_GET['cs'] == $k ? "selected" :'' ?>><?php echo $v; ?></option>
 				<?php endforeach; ?>
 			</select>
+			
 		</div>
 	</form>
 </div>

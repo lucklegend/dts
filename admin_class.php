@@ -133,8 +133,15 @@ Class Action {
 		$data = "";
 		foreach($_POST as $k => $v){
 			if(!in_array($k, array('id','cpass','table')) && !is_numeric($k)){
-				if($k =='password')
-					$v = md5($v);
+				if($k =='password'){
+					if($v != "" || $v != null){
+						$v = md5($v);
+					}else{
+						$getPass = $this->db->query("SELECT * FROM users WHERE id = $id LIMIT 1");
+						$v = $getPass->fetch_array()['password'];
+					}
+				}
+					
 				if(empty($data)){
 					$data .= " $k='$v' ";
 				}else{
@@ -151,7 +158,7 @@ Class Action {
 			}
 		}
 		
-		$check = $this->db->query("SELECT * FROM users where email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
+		$check = $this->db->query("SELECT * FROM users WHERE email ='$email' ".(!empty($id) ? " and id != {$id} " : ''))->num_rows;
 		if($check > 0){
 			return 2;
 			exit;
@@ -252,7 +259,7 @@ Class Action {
 			$chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 			$i = 0;
 			while($i == 0){
-				$bcode = substr(str_shuffle($chars), 0, 15);
+				$bcode = substr(str_shuffle($chars), 0, 4);
 				$chk = $this->db->query("SELECT * FROM branches where branch_code = '$bcode'")->num_rows;
 				if($chk <= 0){
 					$i = 1;
@@ -378,7 +385,7 @@ Class Action {
 			$parcel = $parcel->fetch_array();
 			$data[] = array('status'=>'Tracking Number Generated','date_created'=>date("M d, Y h:i A",strtotime($parcel['date_created'])));
 			$history = $this->db->query("SELECT * FROM parcel_tracks where parcel_id = {$parcel['id']}");
-			$status_arr = array("Tracking Number Generated","Collected","Shipped","In-Transit","Arrived At Destination","Out for Delivery","Ready to Pickup","Delivered","Picked-up","Unsuccessfull Delivery Attempt");
+			$status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up");
 			while($row = $history->fetch_assoc()){
 				$row['date_created'] = date("M d, Y h:i A",strtotime($row['date_created']));
 				$row['status'] = $status_arr[$row['status']];
@@ -391,7 +398,7 @@ Class Action {
 		extract($_POST);
 		$data = array();
 		$get = $this->db->query("SELECT * FROM parcels where date(date_created) BETWEEN '$date_from' and '$date_to' ".($status != 'all' ? " and status = $status " : "")." order by unix_timestamp(date_created) asc");
-		$status_arr = array("Tracking Number Generated","Collected","Shipped","In-Transit","Arrived At Destination","Out for Delivery","Ready to Pickup","Delivered","Picked-up","Unsuccessfull Delivery Attempt");
+		$status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up");
 		while($row=$get->fetch_assoc()){
 			$row['sender_name'] = ucwords($row['sender_name']);
 			$row['recipient_name'] = ucwords($row['recipient_name']);

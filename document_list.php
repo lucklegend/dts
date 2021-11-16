@@ -20,7 +20,7 @@
 						<th class="text-center">#</th>
 						<th>Reference Number</th>
 						<th>Sender Name</th>
-						<th>Recipient Name</th>
+						<th>Office Name</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -49,7 +49,7 @@
 						<td class="text-center"><?php echo $i++ ?></td>
 						<td><b><?php echo ($row['reference_number']) ?></b></td>
 						<td><b><?php echo ucwords($row['sender_name']) ?></b></td>
-						<td><b><?php echo ucwords($row['recipient_name']) ?></b></td>
+						<td><b><?php echo ucwords($row['office_name']) ?>  <?php echo ucwords($row['other_sp']) ?></b></td>
 						<td class="text-center">
 							<?php 
 							switch ($row['status']) {
@@ -57,30 +57,19 @@
 									echo "<span class='badge badge-pill badge-info'> Collected</span>";
 									break;
 								case '2':
-									echo "<span class='badge badge-pill badge-info'> Shipped</span>";
+									echo "<span class='badge badge-pill badge-info'> Action Taken</span>";
 									break;
 								case '3':
-									echo "<span class='badge badge-pill badge-primary'> In-Transit</span>";
+									echo "<span class='badge badge-pill badge-primary'> Pending</span>";
 									break;
 								case '4':
-									echo "<span class='badge badge-pill badge-primary'> Arrived At Destination</span>";
+									echo "<span class='badge badge-pill badge-primary'> Lacking Documents</span>";
 									break;
 								case '5':
-									echo "<span class='badge badge-pill badge-primary'> Out for Delivery</span>";
+									echo "<span class='badge badge-pill badge-primary'> Picked Up</span>";
 									break;
-								case '6':
-									echo "<span class='badge badge-pill badge-primary'> Ready to Pickup</span>";
-									break;
-								case '7':
-									echo "<span class='badge badge-pill badge-success'>Delivered</span>";
-									break;
-								case '8':
-									echo "<span class='badge badge-pill badge-success'> Picked-up</span>";
-									break;
-								case '9':
-									echo "<span class='badge badge-pill badge-danger'> Unsuccessfull Delivery Attempt</span>";
-									break;
-								
+							
+							
 								default:
 									echo "<span class='badge badge-pill badge-info'> Tracking Number Generated</span>";
 									
@@ -97,9 +86,10 @@
 		                        <a href="index.php?page=edit_document&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-flat ">
 		                          <i class="fas fa-edit"></i>
 		                        </a>
+								<?php if($_SESSION['login_type'] == 1 OR $_SESSION['login_type'] == 2):  ?>
 		                        <button type="button" class="btn btn-danger btn-flat delete_parcel" data-id="<?php echo $row['id'] ?>">
 		                          <i class="fas fa-trash"></i>
-		                        </button>
+		                        </button> <?php endif; ?>
 	                      </div>
 						</td>
 					</tr>	

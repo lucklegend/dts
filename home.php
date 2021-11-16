@@ -45,7 +45,7 @@ if($_SESSION['login_type'] != 1)
           </div>
           <hr>
           <?php 
-              $status_arr = array("Tracking Number Generated","Collected","Shipped","In-Transit","Arrived At Destination","Out for Delivery","Ready to Pickup","Delivered","Picked-up","Unsuccessfull Delivery Attempt");
+              $status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up");
                foreach($status_arr as $k =>$v):
           ?>
           <div class="col-12 col-sm-6 col-md-4">

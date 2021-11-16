@@ -125,7 +125,7 @@
               <?php
               if($_SESSION['login_type'] == 1 OR $_SESSION['login_type'] == 2):  
               
-                $status_arr = array("Tracking Number Generated","Collected","Shipped","In-Transit","Arrived At<br/>Destination","Out for Delivery","Ready to Pickup","Delivered","Picked-up","Unsuccessfull<br/>Delivery Attempt");
+                $status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up");
                 foreach($status_arr as $k =>$v):
               ?>
                 <li class="nav-item">

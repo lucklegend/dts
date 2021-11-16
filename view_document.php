@@ -43,21 +43,23 @@ $branch = array();
 					<dl>
 						<dt>Name:</dt>
 						<dd><?php echo ucwords($sender_name) ?></dd>
-						<dt>Address:</dt>
-						<dd><?php echo ucwords($sender_address) ?></dd>
-						<dt>Contact:</dt>
-						<dd><?php echo ucwords($sender_contact) ?></dd>
+						<dt>Station / School:</dt>
+						<dd><?php echo ucwords($station_school) ?></dd>
+						<dt>Station Address:</dt>
+						<dd><?php echo ucwords($station_address) ?></dd>
+						<dt>District</dt>
+						<dd><?php echo ucwords($sender_dis) ?></dd>
 					</dl>
 				</div>
 				<div class="callout callout-info">
 					<b class="border-bottom border-primary">Recipient Information</b>
 					<dl>
-						<dt>Name:</dt>
-						<dd><?php echo ucwords($recipient_name) ?></dd>
-						<dt>Address:</dt>
-						<dd><?php echo ucwords($recipient_address) ?></dd>
-						<dt>Contact:</dt>
-						<dd><?php echo ucwords($recipient_contact) ?></dd>
+						<dt>Name of Office:</dt>
+						<dd><?php echo ucwords($office_name) ?></dd>
+						<dt></dt>
+						<dd><?php echo ucwords($other_sp) ?></dd>
+						<dt>Person In Charge:</dt>
+						<dd><?php echo ucwords($pic) ?></dd>
 					</dl>
 				</div>
 			</div>
@@ -68,17 +70,17 @@ $branch = array();
 						<dt>Description:</dt>
 						<dd><?php echo $description ?></dd>
 					</dl>	
-					<dl>
+					<!--<dl>
 						<dt>Type:</dt>
 						<dd><?php echo $type == 1 ? "<span class='badge badge-primary'>Deliver to Recipient</span>":"<span class='badge badge-info'>Pickup</span>" ?></dd>
-					</dl>	
+					</dl>	-->
 					<dl>
-						<dt>Office Accepted the Document:</dt>
+						<!--<dt>Office Accepted the Document:</dt>
 						<dd><?php echo ucwords($branch[$from_branch_id]) ?></dd>
 						<?php if($type == 2): ?>
 							<dt>Nearest Office to Recipient for Pickup:</dt>
 							<dd><?php echo ucwords($branch[$to_branch_id]) ?></dd>
-						<?php endif; ?>
+						<?php endif; ?> -->
 						<dt>Status:</dt>
 						<dd>
 							<?php 
@@ -87,29 +89,18 @@ $branch = array();
 									echo "<span class='badge badge-pill badge-info'> Collected</span>";
 									break;
 								case '2':
-									echo "<span class='badge badge-pill badge-info'> Shipped</span>";
+									echo "<span class='badge badge-pill badge-info'> Action Taken</span>";
 									break;
 								case '3':
-									echo "<span class='badge badge-pill badge-primary'> In-Transit</span>";
+									echo "<span class='badge badge-pill badge-primary'> Pending</span>";
 									break;
 								case '4':
-									echo "<span class='badge badge-pill badge-primary'> Arrived At Destination</span>";
+									echo "<span class='badge badge-pill badge-primary'> Lacking Documents</span>";
 									break;
 								case '5':
-									echo "<span class='badge badge-pill badge-primary'> Out for Delivery</span>";
+									echo "<span class='badge badge-pill badge-primary'> Picked Up</span>";
 									break;
-								case '6':
-									echo "<span class='badge badge-pill badge-primary'> Ready to Pickup</span>";
-									break;
-								case '7':
-									echo "<span class='badge badge-pill badge-success'>Delivered</span>";
-									break;
-								case '8':
-									echo "<span class='badge badge-pill badge-success'> Picked-up</span>";
-									break;
-								case '9':
-									echo "<span class='badge badge-pill badge-danger'> Unsuccessfull Delivery Attempt</span>";
-									break;
+							
 								
 								default:
 									echo "<span class='badge badge-pill badge-info'> Tracking Number Generated</span>";

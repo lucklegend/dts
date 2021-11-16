@@ -5,7 +5,7 @@
 		<div class="card-body">
 			<div class="d-flex w-100 px-1 py-2 justify-content-center align-items-center">
 			<?php 
-			$status_arr = array("Tracking Number Generated","Collected","Shipped","In-Transit","Arrived At Destination","Out for Delivery","Ready to Pickup","Delivered","Picked-up","Unsuccessfull Delivery Attempt"); ?>
+			$status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up"); ?>
 				<label for="date_from" class="mx-1">Status</label>
 				<select name="" id="status" class="custom-select custom-select-sm col-sm-3">
 					<option value="all" <?php echo $status == 'all' ? "selected" :'' ?>>All</option>
@@ -39,6 +39,7 @@
 								<th>Sender</th>
 								<th>Recepient</th>
 								<th>Status</th>
+							<!--	<th>Created By</th> -->
 							</tr>
 						</thead>
 						<tbody>
@@ -96,8 +97,9 @@
 								tr.append('<td>'+(i++)+'</td>')
 								tr.append('<td>'+(resp[k].date_created)+'</td>')
 								tr.append('<td>'+(resp[k].sender_name)+'</td>')
-								tr.append('<td>'+(resp[k].recipient_name)+'</td>')
+								tr.append('<td>'+(resp[k].office_name)+'</td>')
 								tr.append('<td>'+(resp[k].status)+'</td>')
+							    //tr.append('<td>'+(resp[k].creator_name)+'</td>')
 								$('#report-list tbody').append(tr)
 							})
 							$('#print').show()

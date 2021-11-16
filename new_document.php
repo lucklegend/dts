@@ -1,4 +1,6 @@
 <?php if(!isset($conn)){ include 'db_connect.php'; } ?>
+
+
 <style>
   textarea{
     resize: none;
@@ -13,50 +15,97 @@
         <div class="row">
           <div class="col-md-6">
               <b>Sender Information</b>
+              <br>
+              <br>
               <div class="form-group">
                 <label for="" class="control-label">Name</label>
                 <input type="text" name="sender_name" class="form-control form-control-sm" value="<?php echo isset($sender_name) ? $sender_name : '' ?>" required>
               </div>
               <div class="form-group">
-                <label for="" class="control-label">Address</label>
-                <input type="text" name="sender_address" class="form-control form-control-sm" value="<?php echo isset($sender_address) ? $sender_address : '' ?>" required>
+                <label for="" class="control-label">Station / School</label>
+                <input type="text" name="station_school" class="form-control form-control-sm" value="<?php echo isset($station_school) ? $station_school : '' ?>" required>
               </div>
               <div class="form-group">
-                <label for="" class="control-label">Contact #</label>
+                <label for="" class="control-label">Station Address</label>
+                <input type="text" name="station_address" class="form-control form-control-sm" value="<?php echo isset($station_address) ? $station_address : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">District</label>
+                <input type="text" name="sender_dis" class="form-control form-control-sm" value="<?php echo isset($sender_dis) ? $sender_dis : '' ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="" class="control-label">Contact Number</label>
                 <input type="text" name="sender_contact" class="form-control form-control-sm" value="<?php echo isset($sender_contact) ? $sender_contact : '' ?>" required>
               </div>
           </div>
           <div class="col-md-6">
               <b>Recipient Information</b>
+
+              <br>
+              <br>
               <div class="form-group">
-                <label for="" class="control-label">Name</label>
-                <input type="text" name="recipient_name" class="form-control form-control-sm" value="<?php echo isset($recipient_name) ? $recipient_name : '' ?>" required>
+                <label for="" class="control-label">Name of Office</label>
+               <!-- <input type="text" name="office_name" class="form-control form-control-sm" value="<?php echo isset($office_name) ? $office_name : '' ?>" required> -->
+                <select id="offices" name="office_name" class="form-control form-control-sm" value="<?php echo isset($office_name) ? $office_name : '' ?>" required>
+    <option value="Office of the Superintendent">Office of the Superintendent</option>
+    <option value="Office of the Assistant Superintendent">Office of the Assistant Superintendent</option>
+    <option value="SGOD">SGOD</option>
+    <option value="CID">CID</option>
+    <option value="HRMO">HRMO</option>
+    <option value="DPSU">DPSU</option>
+    <option value="Records">Records</option>
+    <option value="Cashier">Cashier</option>
+    <option value="Accounting">Accounting</option>
+    <option value="ITO">ITO</option>
+    <option value="Others: ">Others</option>
+  </select>
               </div>
               <div class="form-group">
-                <label for="" class="control-label">Address</label>
-                <input type="text" name="recipient_address" class="form-control form-control-sm" value="<?php echo isset($recipient_address) ? $recipient_address : '' ?>" required>
+                <input type="text" name="other_sp" class="form-control form-control-sm" >
+                <small><i>IF <b>"OTHERS"</b> (PLEASE SPECIFY. Else leave it blank)</i></small>
               </div>
               <div class="form-group">
+                <label for="" class="control-label">Person in Charge (PLEASE SPECIFY)</label>
+               <!-- <input type="text" name="pic" class="form-control form-control-sm" value="<?php echo isset($pic) ? $pic : '' ?>" required> -->
+               <select id="personincharge" name="pic" class="form-control form-control-sm" value="<?php echo isset($pic) ? $pic : '' ?>" required>
+    <option value="Office of the Superintendent">Office of the Superintendent</option>
+    <option value="Office of the Assistant Superintendent">Office of the Assistant Superintendent</option>
+    <option value="SGOD">SGOD</option>
+    <option value="CID">CID</option>
+    <option value="HRMO">HRMO</option>
+    <option value="DPSU">DPSU</option>
+    <option value="Records">Records</option>
+    <option value="Cashier">Cashier</option>
+    <option value="Accounting">Accounting</option>
+    <option value="ITO">ITO</option>
+    <option value="Others: ">Others</option>
+  </select>
+   
+              </div>
+              
+             <!-- <div class="form-group">
                 <label for="" class="control-label">Contact #</label>
                 <input type="text" name="recipient_contact" class="form-control form-control-sm" value="<?php echo isset($recipient_contact) ? $recipient_contact : '' ?>" required>
-              </div>
+              </div> -->
+              <div class="form-group">
+              <label for="desc">Document Description</label>
+              <textarea name="description" id="desc" class="form-control form-control-sm" rows="3"></textarea>
+            </div>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="desc">Document Description</label>
-              <textarea name="description" id="desc" class="form-control form-control-sm" rows="3"></textarea>
-            </div>
-            <div class="form-group">
+        <div class="col-md-6">
+           
+            
+           <!-- <div class="form-group">
               <label for="dtype">Type</label>
               <input type="checkbox" name="type" id="dtype" <?php echo isset($type) && $type == 1 ? 'checked' : '' ?> data-bootstrap-switch data-toggle="toggle" data-on="Deliver" data-off="Pickup" class="switch-toggle status_chk" data-size="xs" data-offstyle="info" data-width="5rem" value="1">
               <small>Deliver = Deliver to Recipient Address</small>
               <small>, Pickup = Pickup to nearest Office</small>
-            </div>
+            </div> -->
           </div>
-          <div class="col-md-6" id=""  <?php echo isset($type) && $type == 1 ? 'style="display: none"' : '' ?>>
+        <!-- <div class="col-md-6" id=""  <?php echo isset($type) && $type == 1 ? 'style="display: none"' : '' ?>>
             <?php if($_SESSION['login_branch_id'] <= 0): ?>
               <div class="form-group" id="fbi-field">
                 <label for="" class="control-label">Office Processed</label>
@@ -87,12 +136,13 @@
                 ?>
               </select>
             </div>
-          </div>
+          </div> -->
         </div>
         <hr>
         <div class="hidden">
           <input type="hidden" name="created_by" value="<?php echo $_SESSION['login_id'];?>">
           <input type="hidden" name="updated_at" value="<?php echo $update_at;?>">
+        <!--  <input type="hidden" name="creator_name" value="<?php echo $_SESSION['login_name'];?>"> -->
         </div>
         
               <?php if(!isset($id)): ?>
