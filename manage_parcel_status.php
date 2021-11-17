@@ -1,9 +1,9 @@
 <?php session_start() ?>
 <div class="container-fluid">
 	<form action="" id="update_status">
-		<input type="show" name="id" value="<?php echo $_GET['id'] ?>">
-		<input type="show" name="created_by" value="<?php echo $_SESSION['login_type'] ?>">
-		<input type="show" name="modified_by" value="<?php echo $_SESSION['login_name'] ?>"> 
+		<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
+		<input type="hidden" name="created_by" value="<?php echo $_SESSION['login_type'] ?>">
+		<input type="hidden" name="modified_by" value="<?php echo $_SESSION['login_name'] ?>"> 
 		<div class="form-group">
 			<label for="">Update Status</label>
 			<?php $status_arr = array("Tracking Number Generated","Collected","Action Taken","Pending","Lacking Documents","Picked Up"); ?>

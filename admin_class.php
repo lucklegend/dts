@@ -370,7 +370,7 @@ Class Action {
 	}
 	function update_parcel(){
 		extract($_POST);
-		$update = $this->db->query("UPDATE parcels set status= $status where id = $id");
+		$update = $this->db->query("UPDATE parcels SET status = $status WHERE id = $id");
 		$save = $this->db->query("INSERT INTO parcel_tracks set status= $status , parcel_id = $id, created_by = $created_by");
 		if($update && $save)
 			return 1;  
