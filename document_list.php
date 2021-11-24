@@ -79,18 +79,19 @@
 							?>
 						</td>
 						<td class="text-center">
-		                    <div class="btn-group">
-		                    	<button type="button" class="btn btn-info btn-flat view_parcel" data-id="<?php echo $row['id'] ?>">
-		                          <i class="fas fa-eye"></i>
-		                        </button>
-		                        <a href="index.php?page=edit_document&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-flat ">
-		                          <i class="fas fa-edit"></i>
-		                        </a>
-								<?php if($_SESSION['login_type'] == 1 OR $_SESSION['login_type'] == 2):  ?>
-		                        <button type="button" class="btn btn-danger btn-flat delete_parcel" data-id="<?php echo $row['id'] ?>">
-		                          <i class="fas fa-trash"></i>
-		                        </button> <?php endif; ?>
-	                      </div>
+								<div class="btn-group">
+									<button type="button" class="btn btn-info btn-flat view_parcel" data-id="<?php echo $row['id'] ?>">
+											<i class="fas fa-eye"></i>
+										</button>
+										<a href="index.php?page=edit_document&id=<?php echo $row['id'] ?>" class="btn btn-primary btn-flat ">
+											<i class="fas fa-edit"></i>
+										</a>
+										<?php if($_SESSION['login_type'] == 1 OR $_SESSION['login_type'] == 2):  ?>
+										<button type="button" class="btn btn-danger btn-flat delete_parcel" data-id="<?php echo $row['id'] ?>">
+											<i class="fas fa-trash"></i>
+										</button> 
+										<?php endif; ?>
+								</div>
 						</td>
 					</tr>	
 				<?php endwhile; ?>

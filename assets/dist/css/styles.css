@@ -160,6 +160,13 @@ url("../fonts/code128-webfont.woff2") format("woff2");
 .onScroll-y{
   overflow-y: auto;
 }
+.hide{
+  display: none!important;
+}
+.show{
+  display: block!important;
+}
+
 /*mobile responsiveness*/
 @media only screen and (min-width: 992px) {
     

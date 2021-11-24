@@ -27,4 +27,13 @@ function getTitle(){
 
   	return $title;
 }
+function optionOffice($conn){
+	$qry = $conn->query("SELECT name from branches");
+	$option = '';
+	while ($row = $qry->fetch_assoc()) :
+	$option .= '<option value ="'.$row['name'].'">'. $row['name'].'</option>';
+	endwhile;
+	
+	echo $option;
+}
 ?>
